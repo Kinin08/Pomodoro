@@ -1,0 +1,445 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #313542;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgb(44, 47, 58);
+}
+
+/* ==================== HEADER ==================== */
+
+header {
+    width: 30%;
+    left: 35%;
+    height: 60px;
+    top: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 5px 6px -6px rgba(0, 0, 0, 0.3);
+    background: rgb(44, 47, 58);
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.name {
+    color: rgba(12, 231, 142);
+    text-shadow: 0 0 1px rgba(12, 231, 142), 0 0 1px rgba(12, 231, 142);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.direita {
+    display: flex;
+    gap: 15px;
+}
+
+.direita span {
+    color: #A6AAB4;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.direita span:hover {
+    color: rgba(12, 231, 142);
+}
+
+/* ==================== MAIN ==================== */
+
+main {
+    background: rgb(44, 47, 58);
+    position: absolute;
+    top: 50px;
+    left: 300px;
+    right: 300px;
+    bottom: 40px;
+    color: #E8ECEF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1;
+    transition: left 0.5s ease, right 0.5s ease;
+}
+
+.navPequena+main {
+    left: 60px;
+}
+
+
+main.asideReduzido {
+    right: 60px;
+}
+
+#divMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timer-circle {
+    width: 200px;
+    height: 200px;
+    border: 8px solid rgba(12, 231, 142, 0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(12, 231, 142, 0.7);
+}
+
+.buttons button {
+    padding: 12px 20px;
+    border: none;
+    margin: 5px;
+    border-radius: 6px;
+    background: rgb(83, 255, 186);
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background: rgb(7, 207, 127);
+    transform: scale(1.05);
+}
+
+.buttons button:active {
+    transform: scale(0.97);
+}
+
+/* ==================== BOTÃO WORK ==================== */
+#tarefa {
+    border-radius: 4px;
+    transform: translateY(8px);
+    background: linear-gradient(135deg, #88ff8c, #6bff70);
+    color: rgb(43, 43, 43);
+    padding: 6px 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#tarefa:hover {
+    transform: translateY(5px);
+    background: linear-gradient(135deg, #7edf81, rgb(106, 224, 110));
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#tarefa:active {
+    transform: translateY(8px);
+}
+
+#value {
+    font-size: 2.5rem;
+    color: aliceblue;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* ==================== NAV ==================== */
+
+.navGrande {
+    position: fixed;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #2C2F3A;
+    color: #A6AAB4;
+    padding-top: 20px;
+    justify-content: center;
+    display: block;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 5px 0 6px -6px rgba(0, 0, 0, 0.3);
+    transition: width 0.5s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 200;
+}
+
+.navPequena {
+    width: 60px;
+}
+
+#divNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.navPequena #divNav,
+.navPequena #minimizarTimer {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+#minimizarNav,
+#minimizarTimer {
+    position: absolute;
+    top: 10px;
+    background: transparent;
+    color: #E8ECEF;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 5px;
+}
+
+#minimizarTimer {
+    top: 89px;
+    left: 15px;
+    display: block;
+    width: 250px;
+    text-align: left;
+    font-size: 25px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+#minimizarTimer:hover {
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    background-color: #3d3f49;
+}
+
+#divNav.minimizado {
+    transform: translateY(-10%);
+    opacity: 0;
+}
+
+#minimizarTimer {
+    transition: transform 0.3s ease;
+}
+
+nav h2 {
+    color: #E8ECEF;
+    margin-bottom: 15px;
+    margin-left: 40px;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+    opacity: 0.8;
+    font-size: 21px;
+}
+
+nav input {
+    margin-bottom: 15px;
+    margin-left: 40px;
+    opacity: 0.9;
+}
+
+#volume {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 6px;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(to right, rgba(12, 231, 142) 5%, #444 5%);
+}
+
+#volume::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+}
+
+#volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(12, 231, 142);
+    cursor: pointer;
+    margin-top: -7px;
+    box-shadow: 0 0 7px rgba(12, 231, 142), 0 0 1px rgba(12, 231, 142);
+    transition: 0.4s;
+}
+
+#volume::-webkit-slider-thumb:hover {
+    transform: scale(1.05);
+}
+
+/* ==================== ASIDE (MENU LATERAL DIREITO) ==================== */
+.asideGrande {
+    position: fixed;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #2C2F3A;
+    color: #A6AAB4;
+    padding-top: 20px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -5px 0 6px -6px rgba(0, 0, 0, 0.3);
+    transition: width 0.5s ease, box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 200;
+}
+
+.asidePequena {
+    width: 60px;
+}
+
+#divAside h2 {
+    color: #E8ECEF;
+}
+
+
+#divAside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(0);
+    opacity: 1;
+}
+
+#divAside.slide-out {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.asidePequena #divAside {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+#minimizarAside {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: transparent;
+    color: #E8ECEF;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#minimizarAside:hover {
+    color: #4bf4b0;
+}
+
+.time-item {
+    padding: 8px 8px;
+    border-left: 3.5px solid rgba(12, 231, 142);
+    border-radius: 4px;
+    color: #E8ECEF;
+    transform: translateY(8px);
+}
+
+/* ==================== PLANTA ==================== */
+
+#planta {
+    font-size: 80px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+    display: inline-block;
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+#planta.growing {
+    animation: growPulse 0.5s ease;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes growPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 15px rgba(12, 231, 142, 0.5));
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#planta:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(12, 231, 142, 0.8));
+    transition: all 0.3s ease;
+}
+
+.planta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.growth-level {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #ff6b6b;
+    animation: fadeInUp 0.5s ease;
+}

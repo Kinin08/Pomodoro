@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="name">Tomodoro</div>
+        <div class="direita">
+            <span><a href="">⚙️ Config</a></span>
+            <span>🔑 Sing</span>
+        </div>
+    </header>
+    <nav id="nav" class="navGrande">
+        <button id="minimizarNav">
+            ☰
+        </button>
+        <button id="minimizarTimer">
+            > Timer
+        </button>
+        <div id="divNav" class="minimizado">
+            <h2>Timer</h2>
+            <input type="range" id="volume" min="0.1" max="180" step="5" value="1">
+        </div>
+    </nav>
+    <main id="main" class="mainGrande">
+        <div id="divMain">
+            <div class="growthLevel" id="growthLevel"></div>
+
+            <div class="timer-circle">
+                <div class="planta-container">
+                    <span id="planta">🌱</span>
+                </div>
+            </div>
+            <button id="tarefa">Work</button>
+            <span id="value">01:00</span>
+            <div class="buttons">
+                <button id="start" class="button">Start</button>
+                <button id="pause" class="button">Pause</button>
+                <button id="reset" class="button">Reset</button>
+            </div>
+        </div>
+    </main>
+
+    <aside id="aside" class="asideGrande">
+        <button id="minimizarAside">
+            ☰
+        </button>
+        <div id="divAside">
+            <h2>Times done</h2>
+            <span id="timesDone">
+                There hasn't been any session yet.
+            </span>
+        </div>
+    </aside>
+</body>
+
+</html>
