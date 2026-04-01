@@ -1,21 +1,25 @@
 // ==================== ELEMENTOS DO DOM ====================
-const slider = document.getElementById("volume");
-const display = document.getElementById("value");
-const timesDone = document.getElementById("timesDone");
-const planta = document.getElementById("planta");
-const growthLevel = document.getElementById("growthLevel");
-const btntarefa = document.getElementById("tarefa");
-const main = document.getElementById("main");
-const nav = document.getElementById("nav");
-const aside = document.getElementById("aside");
-const divNav = document.getElementById("divNav");
-const divAside = document.getElementById("divAside");
-const minimizarNav = document.getElementById("minimizarNav");
-const minimizarAside = document.getElementById("minimizarAside");
-const minimizarTimer = document.getElementById("minimizarTimer")
-const start = document.getElementById("start");
-const pause = document.getElementById("pause");
-const reset = document.getElementById("reset");
+const slider = document.querySelector("#volume");
+const display = document.querySelector("#value");
+const timesDone = document.querySelector("#timesDone");
+const planta = document.querySelector("#planta");
+const growthLevel = document.querySelector("#growthLevel");
+const btntarefa = document.querySelector("#tarefa");
+const main = document.querySelector("#main");
+const nav = document.querySelector("#nav");
+const aside = document.querySelector("#aside");
+const divNav = document.querySelector("#divNav");
+const divAside = document.querySelector("#divAside");
+const minimizarNav = document.querySelector("#minimizarNav");
+const minimizarAside = document.querySelector("#minimizarAside");
+const minimizarTimer = document.querySelector("#minimizarTimer")
+const start = document.querySelector("#start");
+const pause = document.querySelector("#pause");
+const reset = document.querySelector("#reset");
+const overlay = document.querySelector("#overlay");
+const input = document.querySelector("#tarefaInput");
+const fechar = document.querySelector("#fecharTarefa");
+const confirmar = document.querySelector("#confirmarTarefa");
 
 // ==================== VARIÁVEIS GLOBAIS ====================
 let estagioAdquirido = '';
@@ -110,97 +114,33 @@ function addTimeDone(segundos) {
 }
 
 // ==================== 7. MODAL DE TAG ====================
+
 btntarefa.addEventListener("click", () => {
-    const overlay = document.createElement("div");
-    overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-    overlay.style.backdropFilter = "blur(4px)";
-    overlay.style.zIndex = "999";
-    overlay.style.display = "flex";
-    overlay.style.justifyContent = "center";
-
-    const caixa = document.createElement("div");
-    caixa.style.background = "linear-gradient(135deg, #2C2F3A, #1E1F2C)";
-    caixa.style.padding = "25px";
-    caixa.style.borderRadius = "12px";
-    caixa.style.width = "320px";
-    caixa.style.textAlign = "center";
-    caixa.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.5)";
-    caixa.style.border = "1px solid rgba(12, 231, 142, 0.3)";
-    caixa.style.animation = "modalSlideIn 0.3s ease";
-
-    caixa.innerHTML = `
-        <h3 style="color: #E8ECEF; margin: 0 0 10px 0;">Nova Tag</h3>
-        <input type="text" id="tarefaInput" placeholder="Nome da tag..." 
-               style="width: 90%; padding: 10px; margin-bottom: 15px; 
-                      background: #1E1F2C; border: 1px solid #3A3E4F; 
-                      border-radius: 6px; color: #E8ECEF; font-size: 1rem;">
-        <div style="display: flex; gap: 10px; justify-content: center;">
-            <button id="fecharTarefa" style="padding: 8px 16px; background: #3A3E4F; 
-                    color: white; border: none; border-radius: 6px; cursor: pointer; 
-                    transition: all 0.3s ease;">
-                Cancelar
-            </button>
-            <button id="confirmarTarefa" style="padding: 8px 16px; background: rgba(12,231,142,0.8); 
-                    color: #000; border: none; border-radius: 6px; cursor: pointer; 
-                    font-weight: bold; transition: all 0.3s ease;">
-                Adicionar
-            </button>
-        </div>
-    `;
-
-    overlay.appendChild(caixa);
-    document.body.appendChild(overlay);
-
-    const style = document.createElement("style");
-    style.textContent = `
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    `;
-    document.head.appendChild(style);
-
-    const input = document.getElementById("tarefaInput");
+    overlay.classList.add("active")
     input.focus();
+});
 
-    function fecharModal() {
-        overlay.remove();
+function fecharModal() {
+    overlay.classList.remove("active");
+}
+
+fechar.addEventListener("click", fecharModal);
+
+confirmar.addEventListener("click", () => {
+    const tarefa = input.value.trim();
+
+    if (tarefa) {
+        btntarefa.textContent = tarefa;
+        fecharModal();
+    } else {
+        alert("Please, Enter a tag!");
     }
+});
 
-    document.getElementById("fecharTarefa").addEventListener("click", fecharModal);
-
-    document.getElementById("confirmarTarefa").addEventListener("click", () => {
-        const tarefa = input.value.trim();
-        if (tarefa) {
-            tagAtual = btntarefa;
-            btntarefa.textContent = tarefa;
-            alert(`Tag added: ${tarefa}`);
-            fecharModal();
-        } else {
-            alert("Please, Enter a tag!");
-            input.style.border = "1px solid #ff6b6b";
-            setTimeout(() => {
-                input.style.border = "1px solid #3A3E4F";
-            }, 2000);
-        }
-    });
-
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
-            fecharModal();
-        }
-    });
+overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+        fecharModal();
+    }
 });
 
 // ==================== 8. CONTROLES DE NAVEGAÇÃO ====================
