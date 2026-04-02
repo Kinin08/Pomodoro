@@ -115,27 +115,36 @@ function addTimeDone(segundos) {
 
 // ==================== 7. MODAL DE TAG ====================
 
-// ABRIR MODAL
 btntarefa.addEventListener("click", () => {
     overlay.classList.add("active");
-    input.value = ""; // ou btntarefa.textContent se quiser mostrar a tag atual
+    input.value = "";
     input.focus();
 });
 
-// FECHAR MODAL
 function fecharModal() {
     overlay.classList.remove("active");
 }
 
 fechar.addEventListener("click", fecharModal);
 
-// FECHAR AO CLICAR FORA
 overlay.addEventListener("click", (e) => {
     if (e.target === overlay) fecharModal();
 });
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") fecharModal();
+});
 
-// CONFIRMAR TAG
 confirmar.addEventListener("click", () => {
+    submitTag();
+});
+
+input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        submitTag();
+    }
+});
+
+function submitTag() {
     const tarefa = input.value.trim();
     if (tarefa) {
         btntarefa.textContent = tarefa;
@@ -144,7 +153,7 @@ confirmar.addEventListener("click", () => {
         alert("Please, enter a tag!");
         input.focus();
     }
-});
+}
 
 // ==================== CONTROLES DE NAVEGAÇÃO ====================
 minimizarNav.addEventListener("click", () => nav.classList.toggle("navPequena"));
@@ -163,16 +172,26 @@ minimizarTimer.addEventListener('click', () => {
 minimizarNav.addEventListener("click", () => {
     nav.classList.toggle("navPequena");
 });
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key.toLowerCase() === "b") {
+        nav.classList.toggle("navPequena");
+    }
+});
 
 minimizarAside.addEventListener("click", () => {
     aside.classList.toggle("asidePequena");
     main.classList.toggle("asideReduzido");
 });
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key.toLowerCase() === "q") {
+        aside.classList.toggle("asidePequena");
+        main.classList.toggle("asideReduzido");
+    }
+});
 
 minimizarTimer.addEventListener('click', () => {
     divNav.classList.toggle('minimizado');
     divNav.style.transition = "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);";
-
     if (divNav.classList.contains('minimizado')) {
         minimizarTimer.textContent = '> Timer';
     } else {

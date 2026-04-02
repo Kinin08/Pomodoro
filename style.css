@@ -444,32 +444,59 @@ nav input {
     animation: fadeInUp 0.5s ease;
 }
 /* ==================== BOX TAG ==================== */
-/* ==================== BOX TAG ==================== */
 #overlay {
+    display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0,0,0,0.6);
-    align-items: center;
     justify-content: center;
-    display: none;        /* <- escondido por padrão */
-    z-index: 9999;        /* <- muito acima do header/nav */
+    align-items: center;
+    z-index: 2000; /* sempre acima do header/nav */
 }
 
 #overlay.active {
-    display: flex;        /* mostra quando ativo */
+    display: flex;
 }
 
 .modal {
-    background: #fff;
+    background-color: #2e2f34;
     padding: 20px;
     border-radius: 10px;
-    min-width: 250px;
-    max-width: 90%;
+    min-width: 250px;;
+    color: #9d9da0;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: 10000;       /* <- sobre o overlay */
+}
+
+.modal input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    color: #191a1d;
+    font-size: 14px;
+    border: 1px solid rgba(12, 231, 142);
+    background-color: #525356;
+}
+
+.modal .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: rgba(12, 231, 142);
+    color: #000;
+    transition: 0.3s;
+}
+
+.modal button:hover {
+    background: #06b66f;
 }
