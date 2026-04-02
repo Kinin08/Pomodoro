@@ -21,6 +21,7 @@ const input = document.querySelector("#tarefaInput");
 const fechar = document.querySelector("#fecharTarefa");
 const confirmar = document.querySelector("#confirmarTarefa");
 
+
 // ==================== VARIÁVEIS GLOBAIS ====================
 let estagioAdquirido = '';
 let nomeEstagioAdquirido = '';
@@ -29,18 +30,21 @@ let time = 0;
 let interval = null;
 let tagAtual = "";
 
+
 // ==================== FUNÇÃO DE ATUALIZAR DISPLAY ====================
 function updateDisplay() {
     const minutes = Number(slider.value);
     const formatted = String(minutes).padStart(2, '0');
     display.textContent = formatted + ":00";
 
+
     const percent = ((minutes - slider.min) / (slider.max - slider.min)) * 100;
-    slider.style.background = `linear-gradient(to right, 
-        #338a67 0%, 
-        #54d8a4 ${percent}%, 
-        #555 ${percent}%, 
+    slider.style.background = `linear-gradient(to right,
+        #338a67 0%,
+        #54d8a4 ${percent}%,
+        #555 ${percent}%,
         #555 100%)`;
+
 
     if (minutes >= 150) {
         planta.textContent = "💫🍅";
@@ -75,8 +79,10 @@ function updateDisplay() {
     }
 }
 
+
 updateDisplay();
 slider.addEventListener("input", updateDisplay);
+
 
 // ==================== 5. FUNÇÃO DO TIMER ====================
 function updateTimerDisplay() {
@@ -85,23 +91,29 @@ function updateTimerDisplay() {
     display.textContent = `${min}:${sec}`;
 }
 
+
 function addTimeDone(segundos) {
     if (timesDone.textContent.includes("There hasn't been any session yet.")) {
         timesDone.innerHTML = "";
     }
 
+
     contadorTimes++;
+
 
     const item = document.createElement("div");
     item.classList.add("time-item");
+
 
     const minutos = Math.floor(segundos / 60);
     const segundosRestantes = segundos % 60;
     const tempoFormatado = `${String(minutos).padStart(2, '0')}:${String(segundosRestantes).padStart(2, '0')}`;
 
+
     const tomateIcon = estagioAdquirido;
     const tomateName = nomeEstagioAdquirido;
     const nomeTag = btntarefa.textContent;
+
 
     item.innerHTML = `
         <div class="time-session">Session - ${contadorTimes}</div>
@@ -113,7 +125,9 @@ function addTimeDone(segundos) {
     timesDone.insertBefore(item, timesDone.firstChild);
 }
 
+
 // ==================== 7. MODAL DE TAG ====================
+
 
 btntarefa.addEventListener("click", () => {
     overlay.classList.add("active");
@@ -121,11 +135,14 @@ btntarefa.addEventListener("click", () => {
     input.focus();
 });
 
+
 function fecharModal() {
     overlay.classList.remove("active");
 }
 
+
 fechar.addEventListener("click", fecharModal);
+
 
 overlay.addEventListener("click", (e) => {
     if (e.target === overlay) fecharModal();
@@ -134,15 +151,18 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") fecharModal();
 });
 
+
 confirmar.addEventListener("click", () => {
     submitTag();
 });
+
 
 input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         submitTag();
     }
 });
+
 
 function submitTag() {
     const tarefa = input.value.trim();
@@ -154,6 +174,7 @@ function submitTag() {
         input.focus();
     }
 }
+
 
 // ==================== CONTROLES DE NAVEGAÇÃO ====================
 minimizarNav.addEventListener("click", () => nav.classList.toggle("navPequena"));
@@ -168,7 +189,10 @@ minimizarTimer.addEventListener('click', () => {
 });
 
 
+
+
 // ==================== 8. CONTROLES DE NAVEGAÇÃO ====================
+
 
 document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === "b") {
@@ -180,18 +204,22 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+
 function toggleNav() {
     nav.classList.toggle("navPequena");
 }
+
 
 function toggleAside() {
     aside.classList.toggle("asidePequena");
     main.classList.toggle("mainExpandido");
 }
 
+
 // EVENTOS DO CLICK
 minimizarNav.addEventListener("click", toggleNav());
 minimizarAside.addEventListener("click", toggleAside());
+
 
 minimizarTimer.addEventListener('click', () => {
     divNav.classList.toggle('minimizado');
@@ -202,6 +230,7 @@ minimizarTimer.addEventListener('click', () => {
         minimizarTimer.textContent = 'v Timer';
     }
 });
+
 
 // ==================== 9. CONTROLES DO TIMER ====================
 start.addEventListener("click", () => {
@@ -222,11 +251,13 @@ start.addEventListener("click", () => {
     }, 1000);
 });
 
+
 pause.addEventListener("click", () => {
     clearInterval(interval);
     interval = null;
     slider.disabled = false;
 });
+
 
 reset.addEventListener("click", () => {
     clearInterval(interval);
