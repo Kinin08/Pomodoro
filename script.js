@@ -169,25 +169,29 @@ minimizarTimer.addEventListener('click', () => {
 
 
 // ==================== 8. CONTROLES DE NAVEGAÇÃO ====================
-minimizarNav.addEventListener("click", () => {
-    nav.classList.toggle("navPequena");
-});
+
 document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === "b") {
         nav.classList.toggle("navPequena");
     }
-});
-
-minimizarAside.addEventListener("click", () => {
-    aside.classList.toggle("asidePequena");
-    main.classList.toggle("asideReduzido");
-});
-document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === "q") {
         aside.classList.toggle("asidePequena");
         main.classList.toggle("asideReduzido");
     }
 });
+
+function toggleNav() {
+    nav.classList.toggle("navPequena");
+}
+
+function toggleAside() {
+    aside.classList.toggle("asidePequena");
+    main.classList.toggle("mainExpandido");
+}
+
+// EVENTOS DO CLICK
+minimizarNav.addEventListener("click", toggleNav());
+minimizarAside.addEventListener("click", toggleAside());
 
 minimizarTimer.addEventListener('click', () => {
     divNav.classList.toggle('minimizado');
