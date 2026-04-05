@@ -1,26 +1,30 @@
 // ==================== ELEMENTOS DO DOM ====================
-const slider = document.getElementById("volume");
-const display = document.getElementById("value");
-const timesDone = document.getElementById("timesDone");
-const planta = document.getElementById("planta");
-const growthLevel = document.getElementById("growthLevel");
-const btntarefa = document.getElementById("tarefa");
-const main = document.getElementById("main");
-const nav = document.getElementById("nav");
-const aside = document.getElementById("aside");
-const divNav = document.getElementById("divNav");
-const divAside = document.getElementById("divAside");
-const minimizarNav = document.getElementById("minimizarNav");
-const minimizarAside = document.getElementById("minimizarAside");
-const minimizarTimer = document.getElementById("minimizarTimer")
-const start = document.getElementById("start");
-const pause = document.getElementById("pause");
-const reset = document.getElementById("reset");
+const slider = document.querySelector("#volume");
+const display = document.querySelector("#value");
+const timesDone = document.querySelector("#timesDone");
+const planta = document.querySelector("#planta");
+const growthLevel = document.querySelector("#growthLevel");
+const btntarefa = document.querySelector("#tarefa");
+
+const main = document.querySelector("#main");
+const nav = document.querySelector("#nav");
+const aside = document.querySelector("#aside");
+
+const divNav = document.querySelector("#divNav");
+const divAside = document.querySelector("#divAside");
+
+const minimizarNav = document.querySelector("#minimizarNav");
+const minimizarAside = document.querySelector("#minimizarAside");
+const minimizarTimer = document.querySelector("#minimizarTimer")
+
+const start = document.querySelector("#start");
+const pause = document.querySelector("#pause");
+const reset = document.querySelector("#reset");
+
 const overlay = document.querySelector("#overlay");
 const input = document.querySelector("#tarefaInput");
 const fechar = document.querySelector("#fecharTarefa");
 const confirmar = document.querySelector("#confirmarTarefa");
-
 
 // ==================== VARIÁVEIS GLOBAIS ====================
 let estagioAdquirido = '';
@@ -30,21 +34,18 @@ let time = 0;
 let interval = null;
 let tagAtual = "";
 
-
 // ==================== FUNÇÃO DE ATUALIZAR DISPLAY ====================
 function updateDisplay() {
     const minutes = Number(slider.value);
     const formatted = String(minutes).padStart(2, '0');
     display.textContent = formatted + ":00";
 
-
     const percent = ((minutes - slider.min) / (slider.max - slider.min)) * 100;
-    slider.style.background = `linear-gradient(to right,
-        #338a67 0%,
-        #54d8a4 ${percent}%,
-        #555 ${percent}%,
+    slider.style.background = `linear-gradient(to right, 
+        #338a67 0%, 
+        #54d8a4 ${percent}%, 
+        #555 ${percent}%, 
         #555 100%)`;
-
 
     if (minutes >= 150) {
         planta.textContent = "💫🍅";
@@ -79,10 +80,8 @@ function updateDisplay() {
     }
 }
 
-
 updateDisplay();
 slider.addEventListener("input", updateDisplay);
-
 
 // ==================== 5. FUNÇÃO DO TIMER ====================
 function updateTimerDisplay() {
@@ -91,29 +90,23 @@ function updateTimerDisplay() {
     display.textContent = `${min}:${sec}`;
 }
 
-
 function addTimeDone(segundos) {
     if (timesDone.textContent.includes("There hasn't been any session yet.")) {
         timesDone.innerHTML = "";
     }
 
-
     contadorTimes++;
-
 
     const item = document.createElement("div");
     item.classList.add("time-item");
-
 
     const minutos = Math.floor(segundos / 60);
     const segundosRestantes = segundos % 60;
     const tempoFormatado = `${String(minutos).padStart(2, '0')}:${String(segundosRestantes).padStart(2, '0')}`;
 
-
     const tomateIcon = estagioAdquirido;
     const tomateName = nomeEstagioAdquirido;
     const nomeTag = btntarefa.textContent;
-
 
     item.innerHTML = `
         <div class="time-session">Session - ${contadorTimes}</div>
@@ -125,112 +118,62 @@ function addTimeDone(segundos) {
     timesDone.insertBefore(item, timesDone.firstChild);
 }
 
-
 // ==================== 7. MODAL DE TAG ====================
 
-
 btntarefa.addEventListener("click", () => {
-    overlay.classList.add("active");
-    input.value = "";
+    overlay.classList.add("active")
     input.focus();
 });
-
 
 function fecharModal() {
     overlay.classList.remove("active");
 }
 
-
 fechar.addEventListener("click", fecharModal);
 
-
-overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) fecharModal();
-});
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") fecharModal();
-});
-
-
 confirmar.addEventListener("click", () => {
-    submitTag();
-});
-
-
-input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        submitTag();
-    }
-});
-
-
-function submitTag() {
     const tarefa = input.value.trim();
+
     if (tarefa) {
         btntarefa.textContent = tarefa;
         fecharModal();
     } else {
-        alert("Please, enter a tag!");
-        input.focus();
+        alert("Please, Enter a tag!");
     }
-}
-
-
-// ==================== CONTROLES DE NAVEGAÇÃO ====================
-minimizarNav.addEventListener("click", () => nav.classList.toggle("navPequena"));
-minimizarAside.addEventListener("click", () => {
-    aside.classList.toggle("asidePequena");
-    main.classList.toggle("asideReduzido");
-});
-minimizarTimer.addEventListener('click', () => {
-    divNav.classList.toggle('minimizado');
-    divNav.style.transition = "transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s cubic-bezier(0.4,0,0.2,1)";
-    minimizarTimer.textContent = divNav.classList.contains('minimizado') ? '> Timer' : 'v Timer';
 });
 
-
-
+overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+        fecharModal();
+    }
+});
 
 // ==================== 8. CONTROLES DE NAVEGAÇÃO ====================
 
-
-document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key.toLowerCase() === "b") {
-        nav.classList.toggle("navPequena");
-    }
-    if (e.ctrlKey && e.key.toLowerCase() === "q") {
-        aside.classList.toggle("asidePequena");
-        main.classList.toggle("asideReduzido");
+function toggleClassOnClick(button, target, className) {
+    button.addEventListener("click", () => {
+        target.classList.toggle(className);
+    });
+}
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        fecharModal();
     }
 });
-
-
-function toggleNav() {
-    nav.classList.toggle("navPequena");
-}
-
-
-function toggleAside() {
-    aside.classList.toggle("asidePequena");
-    main.classList.toggle("mainExpandido");
-}
-
-
-// EVENTOS DO CLICK
-minimizarNav.addEventListener("click", toggleNav());
-minimizarAside.addEventListener("click", toggleAside());
-
+toggleClassOnClick(minimizarNav, nav, "navPequena");
+toggleClassOnClick(minimizarAside, aside, "asidePequena");
+toggleClassOnClick(minimizarAside, main, "asideReduzido");
 
 minimizarTimer.addEventListener('click', () => {
     divNav.classList.toggle('minimizado');
     divNav.style.transition = "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);";
+
     if (divNav.classList.contains('minimizado')) {
         minimizarTimer.textContent = '> Timer';
     } else {
         minimizarTimer.textContent = 'v Timer';
     }
 });
-
 
 // ==================== 9. CONTROLES DO TIMER ====================
 start.addEventListener("click", () => {
@@ -251,21 +194,8 @@ start.addEventListener("click", () => {
     }, 1000);
 });
 
-
 pause.addEventListener("click", () => {
     clearInterval(interval);
     interval = null;
-    slider.disabled = false;
-});
-
-
-reset.addEventListener("click", () => {
-    clearInterval(interval);
-    interval = null;
-    time = 0;
-    display.textContent = slider.min;
-    slider.value = slider.min;
-    updateDisplay();
-    start.disabled = false;
     slider.disabled = false;
 });

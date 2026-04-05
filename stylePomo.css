@@ -443,44 +443,47 @@ nav input {
     color: #ff6b6b;
     animation: fadeInUp 0.5s ease;
 }
-/* ==================== BOX TAG ==================== */
+
+/* ==================== TAG ==================== */
+
 #overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    z-index: 2000; /* sempre acima do header/nav */
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 #overlay.active {
     display: flex;
 }
-
 .modal {
-    background-color: #2e2f34;
-    padding: 20px;
-    border-radius: 10px;
-    min-width: 250px;;
-    color: #9d9da0;
+    background-color: rgb(46, 47, 52);
+    min-width: 250px;
+    color: rgb(157, 157, 160);
     display: flex;
     flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
     gap: 10px;
 }
-
 .modal input {
+    color: rgb(25, 26, 29);
+    font-size: 14px;
+    background-color: rgb(82, 83, 86);
     padding: 8px;
     border-radius: 6px;
-    border: 1px solid #ccc;
     outline: none;
-    color: #191a1d;
-    font-size: 14px;
-    border: 1px solid rgba(12, 231, 142);
-    background-color: #525356;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(12, 231, 142);
+    border-image: initial;
 }
-
 .modal .modal-buttons {
     display: flex;
     justify-content: flex-end;
@@ -488,15 +491,14 @@ nav input {
 }
 
 .modal button {
+    cursor: pointer;
+    color: rgb(0, 0, 0);
     padding: 6px 12px;
     border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    background: rgba(12, 231, 142);
-    color: #000;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    background: rgb(12, 231, 142);
     transition: 0.3s;
-}
-
-.modal button:hover {
-    background: #06b66f;
 }

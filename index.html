@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="script.js" defer></script>
+    <link rel="stylesheet" href="stylePomo.css">
+    <script type="module" src="scriptPomo.js" defer></script>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <span>🔑 Sing</span>
         </div>
     </header>
-    <nav id="nav" class="navGrande navPequena">
+    <nav id="nav" class="navGrande">
         <button id="minimizarNav">
             ☰
         </button>
@@ -48,7 +48,7 @@
         </div>
     </main>
 
-    <aside id="aside" class="asideGrande asidePequena">
+    <aside id="aside" class="asideGrande">
         <button id="minimizarAside">
             ☰
         </button>
@@ -60,15 +60,15 @@
         </div>
     </aside>
     <div id="overlay" class="overlay">
-    <div class="modal">
-        <h3>Enter Tag</h3>
-        <input type="text" id="tarefaInput" placeholder="Tag da tarefa">
-        <div class="modal-buttons">
+        <div class="modal">
+            <h3>Enter a tag</h3>
+            <input type="text" id="tarefaInput" placeholder="Type your task here...">
+            <div class="modal-buttons">
             <button id="fecharTarefa">Close</button>
             <button id="confirmarTarefa">Confirm</button>
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
